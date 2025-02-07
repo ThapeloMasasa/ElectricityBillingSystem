@@ -10,7 +10,7 @@ public class Conn {
             c = DriverManager.getConnection("jdbc:mysql:///ebs", "root", "=Mac56305375$");
             s =c.createStatement();
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println(e.getMessage());
 
         }
     }
