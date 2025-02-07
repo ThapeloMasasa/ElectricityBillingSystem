@@ -49,15 +49,15 @@ public class Login extends JFrame implements  ActionListener{
         b1.setBounds(330, 160, 100, 20);
         add(b1);
 
-        ImageIcon ic2 = new ImageIcon(ClassLoader.getSystemResource("icon/cancel.png"));
+        ImageIcon ic2 = new ImageIcon(ClassLoader.getSystemResource("icon/cancel.jpg"));
         Image i2 = ic2.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
-        b2 = new JButton("Login", new ImageIcon(i2));
+        b2 = new JButton("Cancel", new ImageIcon(i2));
         b2.setBounds(450, 160, 100, 20);
         add(b2);
 
         ImageIcon ic4 = new ImageIcon(ClassLoader.getSystemResource("icon/signup.png"));
         Image i4 = ic4.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
-        b3 = new JButton("Login", new ImageIcon(i4));
+        b3 = new JButton("Signup", new ImageIcon(i4));
         b3.setBounds(330, 160, 100, 20);
         add(b3);
 
@@ -65,8 +65,8 @@ public class Login extends JFrame implements  ActionListener{
         b2.addActionListener(this);
         b3.addActionListener(this);
 
-        ImageIcon ic3 = new ImageIcon(ClassLoader.getSystemResource("icon/second.png"));
-        Image i3 = ic4.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        ImageIcon ic3 = new ImageIcon(ClassLoader.getSystemResource("icon/second.jpg"));
+        Image i3 = ic3.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT);
         ImageIcon icc3 = new ImageIcon(i3);
         l3 = new JLabel(icc3);
         l3.setBounds(0, 0, 250, 250);
@@ -79,23 +79,39 @@ public class Login extends JFrame implements  ActionListener{
 
     }
 
-    public void actionPerfomed(ActionEvent ae){
+    public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == b1){
-            try(
-                    Conn c  = new Conn();
-                    String username = tf1.getText();
-                    String password = pf2.getText();
-                    String usertype = c1.getSelectedItem();
+            try {
+                Conn c = new Conn();
+                String username = tf1.getText();
+                String password = pf2.getText();
+                String usertype = c1.getSelectedItem();
 
-                    String q = "select *  from login where username = '" +username+ "' and password = '"+password+"' and user = '"+usertype+"'";
-                    ResultSet rs = c.s.executeQuery(q);
-
-                    if(rs,next)
-                    )catch(Exception e){
+                String q = "select *  from login where username = '" + username + "' and password = '" + password + "' and user = '" + usertype + "'";
+                ResultSet rs = c.s.executeQuery(q);
+                if (rs.next()) {
+                    String meter = rs.getString("meter_no");
+                    System.out.println(meter);
+                    // new Project(meter, usertype).setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid login");
+                    tf1.setText("");
+                    pf2.setText("");
+                }
+            }catch(Exception e){
                 e.printStackTrace();
+                System.out.println("error: "+e);
             }
-        }else{
-
+        }else if(ae.getSource() == b2){
+            this.setVisible(false);
+        } else if (ae.getSource() == b3) {
+            this.setVisible(false);
+            //new Signup().setVisible(true);
         }
+    }
+
+    public static void main (String args[]){
+        new Login().setVisible(true);
     }
 }
