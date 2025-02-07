@@ -18,7 +18,7 @@ public class Signup extends JFrame implements ActionListener {
         p1.setLayout(null);
         p1.setBackground(Color.WHITE);
         p1.setForeground(new Color(34, 139, 34));
-        p1.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 2),"Create-Account", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(173, 216, 230)));
+        p1.setBorder(new TitledBorder(new LineBorder(new Color(173, 216, 230), 3),"Create-Account", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(173, 216, 230)));
         add(p1);
 
         JLabel l1 = new JLabel("Username");
@@ -44,7 +44,7 @@ public class Signup extends JFrame implements ActionListener {
         JLabel l3 = new JLabel("Password");
         l3.setForeground(Color.DARK_GRAY);
         l3.setFont(new Font("Tahoma", Font.BOLD, 14));
-        l3.setBounds(100, 110, 100, 20);
+        l3.setBounds(100, 130, 100, 20);
         p1.add(l3);
 
         t3 = new JTextField();
@@ -54,7 +54,7 @@ public class Signup extends JFrame implements ActionListener {
         JLabel l4 = new JLabel("Create Account As");
         l4.setForeground(Color.DARK_GRAY);
         l4.setFont(new Font("Tahoma", Font.BOLD, 14));
-        l4.setBounds(100, 170, 100, 20);
+        l4.setBounds(100, 170, 140, 20);
         p1.add(l4);
 
         JLabel l5 = new JLabel("Meter Number");
@@ -92,24 +92,57 @@ public class Signup extends JFrame implements ActionListener {
 
         b1 = new JButton("Create");
         b1.setBackground(Color.BLACK);
-        b1.setForeground(Color.WHITE);
         b1.setBounds(140, 290, 120, 30);
         b1.addActionListener(this);
         p1.add(b1);
 
         b2 = new JButton("Back");
         b2.setBackground(Color.BLACK);
-        b2.setForeground(Color.WHITE);
+
         b2.setBounds(300, 290, 120, 30);
         b2.addActionListener(this);
         p1.add(b2);
 
-        ImageIcon
-
-
-
-
-
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/signupImage.png"));
+        Image i2 = i1.getImage().getScaledInstance(250, 250, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel l6 = new JLabel(i3);
+        l6.setBounds(450, 30, 250, 250);
+        p1.add(l6);
     }
 
-}
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == b1) {
+            String username = t1.getText();
+            String name = t2.getText();
+            String password = t3.getText();
+            String user = c1.getSelectedItem();
+            String meter = t4.getText();
+
+            try {
+                Conn c = new Conn();
+                String str = null;
+                if (user.equals("Admin")) {
+                    str = "insert into login values('" + meter + "', '" + username + "', '" + name + "', '" + password + "','" + user + "')";
+                } else {
+                    str = "update login set username = '" + username + "', name = '" + name + "', password = '" + password + "', user = '" + user + "', where meter_no = '" + t4.getText() + "'";
+                }
+
+                c.s.executeUpdate(str);
+                JOptionPane.showMessageDialog(null, "Account created Successfully");
+                this.setVisible(false);
+                new Login().setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (ae.getSource() == b2) {
+            this.setVisible(false);
+            new Login().setVisible(true);
+        }
+    }
+        public static  void main(String[] args){
+            new Signup().setVisible(true);
+        }
+    }
+
+
