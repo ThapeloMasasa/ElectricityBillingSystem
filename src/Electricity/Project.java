@@ -143,7 +143,7 @@ public class Project extends JFrame implements ActionListener {
         /*-----Report------*/
         r1.setFont(new Font("monospaced", Font.PLAIN, 12));
         ImageIcon icon7 = new ImageIcon(ClassLoader.getSystemResource("icon/icon7.png"));
-        Image image7 = icon6.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        Image image7 = icon7.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
         r1.setIcon(new ImageIcon(image7));
         r1.setMnemonic('R');
         r1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
@@ -157,23 +157,145 @@ public class Project extends JFrame implements ActionListener {
         JMenuItem ut1 = new JMenuItem("Notepad");
         JMenuItem ut2 = new JMenuItem("Calculator");
         JMenuItem ut3 = new JMenuItem("Web Browser");
+        utility.setForeground(Color.RED);
+
+        /*-----Calendar------*/
+        ut1.setFont(new Font("monospaced", Font.PLAIN, 12));
+        ImageIcon icon8 = new ImageIcon(ClassLoader.getSystemResource("icon/icon12.png"));
+        Image image8 = icon8.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut1.setIcon(new ImageIcon(image8));
+        ut1.setMnemonic('C');
+        ut1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
+        ut1.setBackground(Color.WHITE);
+
+        /*-----Calculator------*/
+        ut2.setFont(new Font("monospaced", Font.PLAIN, 12));
+        ImageIcon icon9 = new ImageIcon(ClassLoader.getSystemResource("icon/icon7.png"));
+        Image image9 = icon9.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut2.setIcon(new ImageIcon(image9));
+        ut2.setMnemonic('X');
+        ut2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
+        ut2.setBackground(Color.WHITE);
+
+        /*-----Web Browser------*/
+        ut3.setFont(new Font("monospaced", Font.PLAIN, 12));
+        ImageIcon icon10 = new ImageIcon(ClassLoader.getSystemResource("icon/icon10.png"));
+        Image image10 = icon10.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ut3.setIcon(new ImageIcon(image10));
+        ut3.setMnemonic('W');
+        ut3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
+        ut3.setBackground(Color.WHITE);
+
+        ut1.addActionListener(this);
+        ut2.addActionListener(this);
+        ut3.addActionListener(this);
+
+        /*-----Fifth Column-----*/
+        JMenu exit = new JMenu("logout");
+        JMenuItem ex = new JMenuItem("Logout");
+        exit.setForeground(Color.BLUE);
+
+        /*-----Exit------*/
+        ex.setFont(new Font("monospaced", Font.PLAIN, 12));
+        ImageIcon icon11 = new ImageIcon(ClassLoader.getSystemResource("icon/icon11.png"));
+        Image image11 = icon11.getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
+        ex.setIcon(new ImageIcon(image11));
+        ex.setMnemonic('Z');
+        ex.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.CTRL_MASK));
+        ex.setBackground(Color.WHITE);
+
+        ex.addActionListener(this);
 
 
+        master.add(m1);
+        master.add(m2);
+        master.add(m3);
+        master.add(m4);
 
+        info.add(info1);
+        info.add(info2);
 
+        user.add(u1);
+        user.add(u3);
 
+        report.add(r1);
 
+        utility.add(ut1);
+        utility.add(ut2);
+        utility.add(ut3);
 
+        exit.add(ex);
 
+        if(person.equals("Admin")){
+            mb.add(master);
+        }else{
+            mb.add(info);
+            mb.add(user);
+            mb.add(report);
+        }
+        mb.add(utility);
+        mb.add(exit);
 
+        setJMenuBar(mb);
 
+        setFont(new Font("Senserif", Font.BOLD, 16));
+        setLayout(new FlowLayout());
+        setVisible(false);
 
+    }
 
+    public void actionPerformed(ActionEvent ae){
+        String msg = ae.getActionCommand();
+        if(msg.equals("Customer Details")){
+            //new CustomerDetails().setVisible(true);
+            System.out.println("Display Customer details");
+        }else if(msg.equals("New Customer")){
+           // new NewCustomer().setVisible(true);
+            System.out.println("Display new Customer" );
+        } else if (msg.equals("Calculate Bill")) {
+            //new CalculateBill().setVisible(true);
+            System.out.println("Calculate Bill" );
+        }else if (msg.equals("Pay Bill")){
+            //new PayBill(meter).setVisible(true);
+            System.out.println("Pay Bill" );
+        } else if (msg.equals("Notepad")) {
+            try{
+                Runtime.getRuntime().exec("notepad.exe");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
+        } else if (msg.equals("Calculator")) {
+            try{
+                Runtime.getRuntime().exec("calc.exe");
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        } else if (msg.equals("Web Browser")) {
+            try{
+                Runtime.getRuntime().exec("/");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        } else if (msg.equals("Logout")) {
+            this.setVisible(false);
+            new Login().setVisible(true);
+        } else if(msg.equals("Generate Bill")){
+            //new GenerateBill(meter).setVisible(true);
+            System.out.println("Generate a Bill");
+        } else if (msg.equals("Depost Details")) {
+            //new DepositDetails().setVisible(true);
+            System.out.println("Details about deposit");
+        } else if (msg.equals("Update Information")) {
+            //new UpdateInformation(meter).setVisible(true);
+            System.out.println("Update Information");
+        } else if (msg.equals("Bill Details")) {
+            //new BillDetails(meter).setVisible(true);
+            System.out.println("Display Bill Details");
+        }
+    }
 
-
-
-
-
+    public static void main(String[] args){
+        new Project("", "").setVisible(true);
     }
 }
