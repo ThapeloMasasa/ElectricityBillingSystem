@@ -9,6 +9,11 @@ import javax.swing.border.Border;
 
 public class About extends JFrame implements ActionListener {
 
+    JButton b1;
+    JLabel l1;
+    Font f, f1, f2;
+    TextArea t1;
+    String s;
 
     public About(){
         setLayout(null);
