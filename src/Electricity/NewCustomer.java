@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
+import java.util.Random;
+
 public class NewCustomer  extends JFrame implements ActionListener{
     JLabel l1, l2, l3, l4, l5, l6, l7, l8, l11;
     JTextField t1, t2, t3, t4, t5, t6, t7;
@@ -77,12 +79,55 @@ public class NewCustomer  extends JFrame implements ActionListener{
         b1.setBounds(120, 390, 100, 25);
         b2 = new JButton("Cancel");
         b2.setBounds(250, 390, 100, 25);
+
+        b1.setBackground(Color.BLACK);
+        b1.setForeground(Color.white);
+
+        b2.setBackground(Color.BLACK);
+        b2.setForeground(Color.white);
         p.add(b1);
         p.add(b2);
+        setLayout(new BorderLayout());
 
+        add(p, "Center");
 
+        ImageIcon ic1 = new ImageIcon(ClassLoader.getSystemResource("icon/hicon1.jpg"));
+        Image i3 = ic1.getImage().getScaledInstance(150, 300, Image.SCALE_DEFAULT);
+        ImageIcon ic2 = new ImageIcon(i3);
+        l8=  new JLabel(ic2);
 
+        add(l8, "WEST");
 
+        getContentPane().setBackground(Color.WHITE);
 
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+
+        Random ran = new Random();
+        long first = (ran.nextLong() % 1000000);
+        l11.setText(""+Math.abs(first));
+
+    }
+
+    public void ActionPerformed(ActionEvent ae){
+        if (ae.getSource() ==b1){
+            String name = t1.getText();
+            String meter = l11.getText();
+            String address = t3.getText();
+            String state = t4.getText();
+            String city = t5.getText();
+            String email = t6.getText();
+            String phone = t7.getText();
+
+            String q1 = "insert into customer values( '"+name+"','"+address+"','"+state+"','"+email+"','"+phone+"')";
+            String q2 = "insert into login values('"+meter+"','','','','')";
+
+            try{
+                Conn c1 = new Conn();
+                c1.s.executeUpdate(q1);
+                c1.s.executeUpdate(q2);
+                JOptionPane.showMessageDialog(null, "Customer Details Added");
+            }
+        }
     }
 }
