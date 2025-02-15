@@ -18,7 +18,7 @@ public class NewCustomer  extends JFrame implements ActionListener{
         JPanel p = new JPanel();
         p.setLayout(null);
         p.setBackground(Color.white);
-        p.setBackground(new color(173, 216, 230));
+        p.setBackground(new Color(173, 216, 230));
 
         JLabel title = new JLabel("New Customer");
         title.setBounds(180,10,200,26);
@@ -109,7 +109,7 @@ public class NewCustomer  extends JFrame implements ActionListener{
 
     }
 
-    public void ActionPerformed(ActionEvent ae){
+    public void actionPerformed (ActionEvent ae){
         if (ae.getSource() ==b1){
             String name = t1.getText();
             String meter = l11.getText();
@@ -127,7 +127,17 @@ public class NewCustomer  extends JFrame implements ActionListener{
                 c1.s.executeUpdate(q1);
                 c1.s.executeUpdate(q2);
                 JOptionPane.showMessageDialog(null, "Customer Details Added");
+                this.setVisible(false);
+                //new MeterInfo(meter).setVisible(true)
+            }catch(Exception e){
+                e.printStackTrace();
             }
+        }else if(ae.getSource() == b2){
+            this.setVisible(false);
         }
+    }
+
+    public static void  main( String[] args){
+        new NewCustomer().setVisible(true);
     }
 }
