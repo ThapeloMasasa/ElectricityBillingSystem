@@ -19,7 +19,70 @@ public class NewCustomer  extends JFrame implements ActionListener{
         p.setBackground(new color(173, 216, 230));
 
         JLabel title = new JLabel("New Customer");
-        title.setBounds(180,10,200,261);
-        title.setFont(new Font("Tahoma"));
+        title.setBounds(180,10,200,26);
+        title.setFont(new Font("Tahoma", Font.PLAIN, 24));
+        p.add(title);
+
+        l1 = new JLabel("Customer Name");
+        l1.setBounds(100, 80, 100, 20);
+
+        t1 = new JTextField();
+        t1.setBounds(240, 80, 200, 20);
+        p.add(l1);
+        p.add(t1);
+
+        l2 = new JLabel("Meter No");
+        l2.setBounds(100, 120, 100, 20);
+        l11 = new JLabel();
+        l11.setBounds(100, 120, 100, 20);
+        p.add(l2);
+        p.add(l11);
+
+        l3 = new JLabel("Address");
+        l3.setBounds(100, 160, 100, 20);
+        t3 = new JTextField();
+        t3.setBounds(240, 160, 200, 20);
+        p.add(l3);
+        p.add(t3);
+
+        l5 = new JLabel("City");
+        l5.setBounds(100, 200, 100, 20);
+        t5 = new JTextField();
+        t5.setBounds(240, 200, 200, 20);
+        p.add(l5);
+        p.add(t5);
+
+        l4 = new JLabel("State");
+        l4.setBounds(100, 240, 100, 20);
+        t4 = new JTextField();
+        t4.setBounds(240, 240, 200, 20);
+        p.add(l4);
+        p.add(t4);
+
+        l6 = new JLabel("Email");
+        l6.setBounds(100, 280, 100, 20);
+        t6 = new JTextField();
+        t6.setBounds(240, 280, 200, 20);
+        p.add(l6);
+        p.add(t6);
+
+        l7 = new JLabel("Phone Number");
+        l7.setBounds(100, 320, 100, 20);
+        t7 = new JTextField();
+        t7.setBounds(240, 320, 200, 20);
+        p.add(l7);
+        p.add(t7);
+
+        b1= new JButton("Next");
+        b1.setBounds(120, 390, 100, 25);
+        b2 = new JButton("Cancel");
+        b2.setBounds(250, 390, 100, 25);
+        p.add(b1);
+        p.add(b2);
+
+
+
+
+
     }
 }
