@@ -1,6 +1,7 @@
 package Electricity;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
@@ -24,12 +25,34 @@ public class CustomerDetails extends JFrame implements ActionListener {
                 y[i][j++] = rs.getString("name");
                 y[i][j++] = rs.getString("meter");
                 y[i][j++] = rs.getString("address");
-                y[i][j++] = rs.getString("name");
+                y[i][j++] = rs.getString("city");
+                y[i][j++] = rs.getString("state");
+                y[i][j++] = rs.getString("email");
+                y[i][j++] = rs.getString("phone");
+                i++;
+                j=0;
             }
+            t1 = new JTable(y, x);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        b1 = new JButton("Print");
+        add(b1, "South");
+        JScrollPane sp = new JScrollPane(t1);
+        add(sp);
+        b1.addActionListener(this);
+    }
+
+    public void actionPerformed(ActionEvent ae){
+        try{
+            t1.print();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
-
+    public static void main(String[] args){
+        new CustomerDetails().setVisible(true);
+    }
 }
