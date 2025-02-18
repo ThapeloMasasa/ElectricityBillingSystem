@@ -26,7 +26,7 @@ public class NewCustomer  extends JFrame implements ActionListener{
         p.add(title);
 
         l1 = new JLabel("Customer Name");
-        l1.setBounds(100, 80, 100, 20);
+        l1.setBounds(100, 80, 120, 20);
 
         t1 = new JTextField();
         t1.setBounds(240, 80, 200, 20);
@@ -36,7 +36,7 @@ public class NewCustomer  extends JFrame implements ActionListener{
         l2 = new JLabel("Meter No");
         l2.setBounds(100, 120, 100, 20);
         l11 = new JLabel();
-        l11.setBounds(100, 120, 100, 20);
+        l11.setBounds(240, 120, 100, 20);
         p.add(l2);
         p.add(l11);
 
@@ -81,10 +81,10 @@ public class NewCustomer  extends JFrame implements ActionListener{
         b2.setBounds(250, 390, 100, 25);
 
         b1.setBackground(Color.BLACK);
-        b1.setForeground(Color.white);
+        //b1.setForeground(Color.white);
 
         b2.setBackground(Color.BLACK);
-        b2.setForeground(Color.white);
+        //b2.setForeground(Color.white);
         p.add(b1);
         p.add(b2);
         setLayout(new BorderLayout());
@@ -96,7 +96,7 @@ public class NewCustomer  extends JFrame implements ActionListener{
         ImageIcon ic2 = new ImageIcon(i3);
         l8=  new JLabel(ic2);
 
-        add(l8, "WEST");
+        add(l8, "West");
 
         getContentPane().setBackground(Color.WHITE);
 
